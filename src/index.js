@@ -3,6 +3,7 @@ import Header from './js/header';
 import Comment from './js/comment';
 import Favoriate from './js/favoriate';
 import CommentSender from './js/commentsender';
+import Loading from './js/loading';
 import util from './js/util';
 import layout from './js/layout';
 require('./css/index.css');
@@ -37,4 +38,5 @@ $(()=>{
   });
 
   layout.adjustLayout();
+  Loading.hide();
 });

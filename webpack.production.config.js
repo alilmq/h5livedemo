@@ -6,10 +6,11 @@ const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: {
-    "h5demo": [path.resolve(__dirname, 'src/index.js')],
+    "h5livedemo": [path.resolve(__dirname, 'src/index.js')],
   },
   output: {
     path: path.resolve(__dirname + '/disk'),
@@ -17,57 +18,68 @@ module.exports = {
     filename: './js/[name].min.js'
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.css$/,
       include: path.resolve(__dirname, 'src'),
-      loader: 'style!css!postcss'
-    }, {
-      test: /\.scss$/,
-      include: path.resolve(__dirname, 'src'),
-      loader: 'style!css!postcss!sass'
+      use:ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [{loader: 'css-loader',
+                options: {
+                  minimize: true
+                }},'postcss-loader']
+        })
     }, {
       test: /\.js[x]?$/,
       include: path.resolve(__dirname, 'src'),
       exclude: /node_modules/,
-      loader: 'babel-loader'
-    }, {
-      test: /\.(png|jpg)$/,
-      loader: 'url-loader?limit=10000&name=images/[hash:8].[name].[ext]'
-    }, {
-      test: /\.(htm|html)$/i,
-      loader: 'html-withimg-loader'
+      use: [{
+        loader:'babel-loader', 
+        options: { presets: ["es2015","stage-0"] }
+      }]
     }, {
       test: /\.html$/,
       include: path.resolve(__dirname, 'src'),
-      loader: "html-loader?interpolate"
+      use: [{
+            loader: 'html-loader',
+            options: {
+              interpolate: true
+            }
+      }]
+    }, {
+      test: /\.(png|jpg)$/,
+      use:[
+      {
+        loader:'url-loader',
+        options:{
+          limit:8192,
+          name:'images/[hash:8].[name].[ext]'
+        }
+      }]
     }]
   },
-  babel: {
-    babelrc: false,
-    presets: [
-      ['es2015'],
-    ],
-  },
-  postcss: [Autoprefixer({
-    browsers: ['last 5 versions']
-  })],
-  resolve: {
-    extensions: ['', '.js', 'scss'],
-  },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin('h5livedemo.common'),
+    new ExtractTextPlugin("css/[name].css"),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: function () {
+          return [Autoprefixer({
+            browsers: ['last 5 versions']
+          })];
+        }
+      }
+    }),
     new HtmlWebpackPlugin({
         filename: 'index.html',
         template: './src/index.html',
         inject: 'body',
         hash: true
     }),
-    new webpack.optimize.DedupePlugin(),
     new uglifyJsPlugin({
       compress: {
         warnings: false
       }
     }),
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackExternalsPlugin([{
       name: 'zepto',
       var: 'zepto',
@@ -84,10 +96,6 @@ module.exports = {
       name: 'jweixin',
       var: 'jweixin',
       url: 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js'
-    },{
-      name: 'frozen',
-      var: 'frozen',
-      url: 'lib/frozen.min.js'
     }], {
       // Resolve local modules relative to this directory
       basedir: __dirname
