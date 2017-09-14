@@ -35,7 +35,7 @@
 .comment-row .comment-left
 {
   color:#DBDBDB;
-  line-height: 0.6rem;
+  line-height: 0.8rem;
   vertical-align: top;
 }
 
@@ -64,7 +64,7 @@ html[data-dpr="3"] .comment-row .comment-left{
 
 .comment-row .comment-right
 {
-  line-height: 0.6rem;
+  line-height: 0.8rem;
   margin-left:0.133333rem;
 }
 
