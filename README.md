@@ -24,6 +24,8 @@ $ npm install
 
 #### 开发环境
 
+启动webpack dev server微服务，支持监听文件变化，实现时时打包，支持热模块替换。
+
 ```sh
 $ cd h5livedemo
 $ npm run dev
