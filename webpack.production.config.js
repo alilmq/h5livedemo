@@ -87,8 +87,7 @@ module.exports = {
     },{
       name: 'prismplayer',
       var: 'prismplayer',
-      url:'http://g-assets.daily.taobao.net/de/prismplayer/2.0.1/prism.js'
-      // url: 'https://g.alicdn.com/de/prismplayer/1.9.9/prism-min.js'
+      url: 'https://g.alicdn.com/de/prismplayer/1.9.9/prism-min.js'
     },{
       name: 'mqttws31',
       var: 'mqttws31',
