@@ -24,7 +24,10 @@ $(()=>{
           x5_type:'h5', //通过 video 属性 “x5-video-player-type” 声明启用同层H5播放器，支持的值：h5 https://x5.tencent.com/tbs/guide/video.html
           x5_fullscreen:true,//通过 video 属性 “x5-video-player-fullscreen” 声明视频播放时是否进入到 TBS 的全屏模式，支持的值：true
           x5_orientation:1,
-          skinLayout:[{name:"bigPlayButton", align:"blabs", x:"70", y:"150"}]
+          skinLayout:[
+          {name:"bigPlayButton", align:"blabs", x:"70", y:"150"},
+          {name: "H5Loading", align: "cc"}
+          ]
         });
   CommentSender.setup();
   comment = new Comment();
