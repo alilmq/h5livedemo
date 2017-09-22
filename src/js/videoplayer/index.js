@@ -51,8 +51,8 @@ export default class VideoPlayer
             });
 
         this.player.on('requestFullScreen', function(e){
-        	$(that.player.el()).removeClass('prism-fullscreen');
-        })
+        	that.player.cancelFullScreen();
+        });
         // 解决ios不自动播放的问题
         $(document).on('WeixinJSBridgeReady',function(){ 
 		   var video=$(that.player.el()).find('video')[0];
