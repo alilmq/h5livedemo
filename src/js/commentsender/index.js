@@ -1,4 +1,5 @@
 import Event from '../events';
+import layout from '../layout';
 require('./index.css');
 
 export default class CommentSender
@@ -16,6 +17,6 @@ export default class CommentSender
 		});
 		$('.comment-textbox .favoriate-send').click(()=>{
 			Event.trigger(Event.EventConstant.Favoriation_Sended);
-		})
+		});
 	}
 }

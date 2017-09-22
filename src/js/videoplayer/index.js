@@ -1,3 +1,4 @@
+import layout from '../layout';
 require('./index.css');
 export default class VideoPlayer
 {
@@ -51,8 +52,15 @@ export default class VideoPlayer
             });
 
         this.player.on('requestFullScreen', function(e){
+        	layout.adjustLayout(true);
         	that.player.cancelFullScreen();
         });
+
+        this.player.tag.addEventListener("x5videoexitfullscreen", function(){
+        	if(WeixinJSBridge)
+        		WeixinJSBridge.call('closeWindow');
+        });
+
         // 解决ios不自动播放的问题
         $(document).on('WeixinJSBridgeReady',function(){ 
 		   var video=$(that.player.el()).find('video')[0];

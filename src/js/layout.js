@@ -1,11 +1,15 @@
 import util from './util';
 export default class Layout
 {
-	static adjustLayout()
+	static adjustLayout(excludeInputHeight = false)
 	{
 		let height = util.screenHeight(),
 		commentTextbox = $('.comment-textbox'),
 		inputHeight = commentTextbox.height() +18;
+		if(excludeInputHeight)
+		{
+			inputHeight = inputHeight*-1 +5;
+		}
 		commentTextbox.css('top', height - inputHeight);
 		let commentList = $('.comment-list'),
 		commentListHeight = commentList.height();
