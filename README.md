@@ -1,6 +1,6 @@
 ## Aliplayer播放器H5 live demo
 
-包含全屏播放、评论、点赞、客户端长连接mqtt、支持在android微信全屏同层播放等功能。
+包含全屏播放、评论、点赞、客户端长连接mqtt、支持在android微信全屏同层播放，解决android微信弹出全屏播放的问题等功能。
 
 ## [体验demo](https://player.alicdn.com/aliplayer/)
 
