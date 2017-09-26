@@ -9,3 +9,8 @@
 	left:50%!important;
 	transform:translate(-50%, -50%);
 }
+
+.prism-progress-cursor 
+{
+  margin-left:0px !important;
+}
