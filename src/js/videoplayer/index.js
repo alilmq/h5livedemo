@@ -33,36 +33,36 @@ export default class VideoPlayer
 	_bindEvent()
 	{
 		var that = this;
-		this.player.on('ready',function  (e) {
+		this.player.on('ready',  (e)=> {
             console.log('ready');
         });
 
-        this.player.on('play',function  (e) {
+        this.player.on('play',  (e)=>{
             console.log('play');
 
         });
 
-        this.player.on('ended',function  (e) {
+        this.player.on('ended',(e)=>{
             console.log('ended');
 
             });
-        this.player.on('pause',function  (e) {
+        this.player.on('pause',(e)=> {
             console.log('pause');
 
             });
 
-        this.player.on('requestFullScreen', function(e){
+        this.player.on('requestFullScreen', (e)=>{
         	layout.adjustLayout(true);
         	that.player.cancelFullScreen();
         });
 
-        this.player.tag.addEventListener("x5videoexitfullscreen", function(){
+        this.player.tag.addEventListener("x5videoexitfullscreen", ()=>{
         	if(WeixinJSBridge)
         		WeixinJSBridge.call('closeWindow');
         });
 
         // 解决ios不自动播放的问题
-        $(document).on('WeixinJSBridgeReady',function(){ 
+        $(document).on('WeixinJSBridgeReady',()=>{ 
 		   var video=$(that.player.el()).find('video')[0];
 		   video.play();
 		});
