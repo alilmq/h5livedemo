@@ -25,7 +25,9 @@ $(()=>{
           x5_fullscreen:true,//通过 video 属性 “x5-video-player-fullscreen” 声明视频播放时是否进入到 TBS 的全屏模式，支持的值：true
           skinLayout:[
           {name:"bigPlayButton", align:"blabs", x:"70", y:"150"},
-          {name: "H5Loading", align: "cc"}
+          {name: "H5Loading", align: "cc"},
+          {name: "errorDisplay", align: "tlabs", x: 0, y: 0},
+          {name: "infoDisplay", align: "cc"}
           ]
         });
   CommentSender.setup();
