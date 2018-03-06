@@ -67,7 +67,7 @@ export default class Header {
 	_getAudiences(liveId, url) {
 		for(let i=1;i<10;i++)
 		{
-		   Header._createImgHeader($('.audience-detail'), "http://avatar.test.qupai.me/20160519/a61738ec-1cd3-47ff-a6f3-c303660cccf2.jpg", i);
+		   Header._createImgHeader($('.audience-detail'), "./images/avatar.jpg", i);
 	    }
 	}
 
